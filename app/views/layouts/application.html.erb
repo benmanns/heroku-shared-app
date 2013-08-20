@@ -10,5 +10,12 @@
 
 <%= yield %>
 
+<p>This app is connected to:
+  <ul>
+    <% ActiveRecord::Base.connection.instance_variable_get(:@config).except(:password).each do |key, value| %>
+      <li><strong><%= key %>:</strong> <%= value %></li>
+    <% end %>
+  </ul>
+</p>
 </body>
 </html>
